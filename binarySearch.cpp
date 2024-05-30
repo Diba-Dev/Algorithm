@@ -1,11 +1,12 @@
-//TOPIC : Binary Search
- 
-#include<bits/stdc++.h>
+// TOPIC : Binary Search
+
+#include <bits/stdc++.h>
 using namespace std;
 
-
-int binarySearch(int arr[], int low, int high, int x) {
-    while (low <= high) {
+int binarySearch(int arr[], int low, int high, int x)
+{
+    while (low <= high)
+    {
         int mid = low + (high - low) / 2;
 
         if (arr[mid] == x)
@@ -20,28 +21,26 @@ int binarySearch(int arr[], int low, int high, int x) {
     return -1;
 }
 
-int main() {
+int main()
+{
     int n;
-    cout << "PUT N: ";
+    cout << "Put the size of the array: ";
     cin >> n;
+    int array[n];
 
-    int* array = new int[n];
-
-    cout << "Put the array elements:" << endl;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter elemnt for position array[" << i << "] = ";
         cin >> array[i];
     }
-
     int find;
     cout << "Enter the element you are searching: ";
     cin >> find;
 
     int result = binarySearch(array, 0, n - 1, find);
-    if (result == -1) {
-        cout << "Element is not present in array" << endl;
-    } else {
-        cout << "Element is present at index " << result;
-    }
-    
+    (result == -1)
+        ? cout << "Element is not present in array"
+        : cout << "Element is present at index " << result;
+
     return 0;
 }
