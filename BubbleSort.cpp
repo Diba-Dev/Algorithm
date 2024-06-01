@@ -2,30 +2,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
-void display(int array[], int size)
-{
-    int boxWidth = 4;
-
-    for (int i = 0; i < size; ++i)
-    {
-        cout << "+----";
-    }
-    cout << "+" << endl;
-
-    for (int i = 0; i < size; ++i)
-    {
-        cout << "| " << setw(boxWidth - 2) << array[i] << " ";
-    }
-    cout << "|" << endl;
-
-    // Print the bottom border
-    for (int i = 0; i < size; ++i)
-    {
-        cout << "+----"; // Adjust the number of '-' according to boxWidth
-    }
-    cout << "+" << endl;
-}
+void display(int array[], int size);
 
 void bubbleShort(int array[], int size)
 {
@@ -45,7 +22,6 @@ void bubbleShort(int array[], int size)
                 flag = 1;
             }
         }
-
         if (flag == 0)
             break;
     }
@@ -67,4 +43,26 @@ int main()
     display(array, size);
 
     return 0;
+}
+
+void display(int array[], int size){
+    int boxWidth = 4;
+
+    for (int i = 0; i < size; ++i)
+    {
+        cout << "+----";
+    }
+    cout << "+" << endl;
+
+    for (int i = 0; i < size; ++i)
+    {
+        cout << "| " << setw(boxWidth - 2) << array[i] << " ";
+    }
+    cout << "|" << endl;
+
+    for (int i = 0; i < size; ++i)
+    {
+        cout << "+----";
+    }
+    cout << "+" << endl;
 }
