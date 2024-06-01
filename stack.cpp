@@ -1,11 +1,9 @@
-// TOPIC : stack push pop;
-
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-void Push(int Stack[], int &stackPointer, int a)
+void Push(int Stack[], int &stackPointer, int size)
 {
-    if (stackPointer == a)
+    if (stackPointer == size)
     {
         cout << "Stack overflow" << endl;
     }
@@ -13,8 +11,7 @@ void Push(int Stack[], int &stackPointer, int a)
     {
         cout << "Push an element: ";
         cin >> Stack[stackPointer];
-        cout << Stack[stackPointer] << " Push completed" << endl
-             << endl;
+        cout << Stack[stackPointer] << " Push completed" << endl << endl;
         stackPointer++;
     }
 }
@@ -27,20 +24,20 @@ void Pop(int Stack[], int &stackPointer)
     }
     else
     {
-        cout << Stack[stackPointer-1] << " Pop completed" << endl
-             << endl;
         stackPointer--;
+        cout << Stack[stackPointer] << " Pop completed" << endl << endl;
     }
 }
-void Display(int Stack[], int &stackPointer)
+
+void Display(int Stack[], int stackPointer)
 {
     if (stackPointer == 0)
     {
-        cout << "Stack Underflow" << endl;
+        cout << "Stack is empty" << endl;
     }
     else
     {
-        cout << "Displying:" << endl;
+        cout << "Displaying stack elements:" << endl;
         for (int i = 0; i < stackPointer; i++)
         {
             cout << Stack[i] << endl;
@@ -50,34 +47,47 @@ void Display(int Stack[], int &stackPointer)
 
 int main()
 {
-    int a;
+    int size;
     cout << "Stack Size: ";
-    cin >> a;
-    int Stack[a], stackP = 0;
-    int *stackPointer = &stackP;
-    int *aa = &a;
+    cin >> size;
+    int Stack[size], stackPointer = 0;
 
     int Option = 0;
-    cout << endl
-         << "1) for push \n2) for pop \n3) for display \n4) for break: " << endl;
-    while (Option != 4)
+    cout << endl << "1) Push \n2) Pop \n3) Top \n4) Size \n5) Display \n6) Exit" << endl;
+    while (Option != 6)
     {
-        cout << "Option put: ";
+        cout << "Select Option: ";
         cin >> Option;
 
         switch (Option)
         {
         case 1:
-            Push(Stack, *stackPointer, *aa);
+            Push(Stack, stackPointer, size);
             break;
         case 2:
-            Pop(Stack, *stackPointer);
+            Pop(Stack, stackPointer);
             break;
         case 3:
-            Display(Stack, *stackPointer);
+            if (stackPointer > 0)
+            {
+                cout << "TOP element is: " << Stack[stackPointer - 1] << endl;
+            }
+            else
+            {
+                cout << "Stack is empty" << endl;
+            }
             break;
-
+        case 4:
+            cout << "Size of the Stack is: " << stackPointer << endl;
+            break;
+        case 5:
+            Display(Stack, stackPointer);
+            break;
+        case 6:
+            cout << "Exiting..." << endl;
+            break;
         default:
+            cout << "Invalid option, try again." << endl;
             break;
         }
     }
