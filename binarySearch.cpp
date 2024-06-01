@@ -1,20 +1,34 @@
-#include <iostream>
+// TOPIC : Binary Search
+
+#include <bits/stdc++.h>
 using namespace std;
 
 int binarySearch(int arr[], int low, int high, int x) {
     while (low <= high) {
-        int mid = low + (high - low) / 2; // Calculate mid-point to avoid overflow
+        int mid = low + (high - low) / 2;
 
         if (arr[mid] == x)
-            return mid; // Element found at mid
+            return mid;
 
         if (arr[mid] < x)
-            low = mid + 1; // Narrow search to upper half
+            low = mid + 1;
         else
-            high = mid - 1; // Narrow search to lower half
+            high = mid - 1;
     }
 
-    return -1; // Element not found
+    return -1;
+}
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - i - 1; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
 }
 
 int main() {
@@ -27,7 +41,7 @@ int main() {
         return 1;
     }
 
-    int array[n];
+    int* array = new int[n];
 
     for (int i = 0; i < n; ++i) {
         cout << "Enter element for position array[" << i << "] = ";
@@ -35,26 +49,27 @@ int main() {
     }
 
     // Sorting the array using Bubble Sort
-    for (int i = 0; i < n - 1; ++i) {
-        for (int j = 0; j < n - i - 1; ++j) {
-            if (array[j] > array[j + 1]) {
-                int temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
-            }
-        }
+    bubbleSort(array, n);
+
+    cout<<"The sorted array is:"<<endl; 
+    for (int i = 0; i < n; i++)
+    {
+        cout<<array[i]<<" ";
     }
+    
 
-    int find;
-    cout << "Enter the element you are searching for: ";
-    cin >> find;
+    int target;
+    cout <<endl<< "Enter the element you are searching for: ";
+    cin >> target;
 
-    int result = binarySearch(array, 0, n - 1, find);
+    int result = binarySearch(array, 0, n - 1, target);
 
     if (result == -1)
         cout << "Element is not present in array" << endl;
     else
         cout << "Element is present at index " << result << endl;
+
+    delete[] array; // Free the dynamically allocated memory
 
     return 0;
 }

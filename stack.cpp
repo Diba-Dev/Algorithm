@@ -1,3 +1,4 @@
+//TOPIC: Implementation of Stack
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -11,7 +12,8 @@ void Push(int Stack[], int &stackPointer, int size)
     {
         cout << "Push an element: ";
         cin >> Stack[stackPointer];
-        cout << Stack[stackPointer] << " Push completed" << endl << endl;
+        cout << Stack[stackPointer] << " Push completed" << endl
+             << endl;
         stackPointer++;
     }
 }
@@ -25,7 +27,8 @@ void Pop(int Stack[], int &stackPointer)
     else
     {
         stackPointer--;
-        cout << Stack[stackPointer] << " Pop completed" << endl << endl;
+        cout << Stack[stackPointer] << " Pop completed" << endl
+             << endl;
     }
 }
 
@@ -53,7 +56,8 @@ int main()
     int Stack[size], stackPointer = 0;
 
     int Option = 0;
-    cout << endl << "1) Push \n2) Pop \n3) Top \n4) Size \n5) Display \n6) Exit" << endl;
+    cout << endl
+         << "1) Push \n2) Pop \n3) Top \n4) Size \n5) Display \n6) Exit" << endl;
     while (Option != 6)
     {
         cout << "Select Option: ";

@@ -1,4 +1,5 @@
 // TOPIC: quickshort
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -55,7 +56,6 @@ int main()
     for (int i = 0; i < n; i++)
     {
         cin >> ar[i];
-        cout << endl;
     }
 
     quickSort(ar, 0, n - 1); // Q(array,Low,High)
