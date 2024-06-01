@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 void Push(int Stack[], int &stackPointer, int size)
@@ -68,14 +68,7 @@ int main()
             Pop(Stack, stackPointer);
             break;
         case 3:
-            if (stackPointer > 0)
-            {
-                cout << "TOP element is: " << Stack[stackPointer - 1] << endl;
-            }
-            else
-            {
-                cout << "Stack is empty" << endl;
-            }
+            cout << "TOP element is: " << Stack[stackPointer - 1] << endl;
             break;
         case 4:
             cout << "Size of the Stack is: " << stackPointer << endl;

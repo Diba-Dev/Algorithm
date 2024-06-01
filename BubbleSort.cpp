@@ -7,7 +7,7 @@ void display(int array[], int size);
 void bubbleShort(int array[], int size)
 {
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size-1; i++)
     {
         cout << "pass[" << i << "] :" << endl;
         display(array, size);
@@ -35,7 +35,7 @@ int main()
     int array[size];
     for (int i = 0; i < size; i++)
     {
-        cout << "Enter elemnt for position array[" << i << "] = ";
+        cout << "Enter array[" << i << "] = ";
         cin >> array[i];
     }
     bubbleShort(array, size);

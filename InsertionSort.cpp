@@ -27,7 +27,7 @@ void InsertionSort(int array[], int size)
 int main()
 {
     int size;
-    cout << "Put the array size: ";
+    cout << "Enter the size: ";
     cin >> size;
     int array[size];
     for (int i = 0; i < size; i++)
@@ -39,9 +39,7 @@ int main()
     display(array, size);
 
     InsertionSort(array, size);
-    cout << endl
-         << "The shorted array after pass[" << size << "] is: " << endl;
-    cout << "The shorted array is: " << endl;
+    cout <<endl<< "The shorted array is: " << endl;
     display(array, size);
 
     return 0;

@@ -28,7 +28,7 @@ int main(void)
 
     int result = search(array, N, find);
     (result == -1)
-        ? cout << "Element is not present in array"
-        : cout << "Element is present at index " << result;
+        ? cout << "Element is not found"
+        : cout << "Element is in " << result;
     return 0;
 }

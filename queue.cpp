@@ -53,10 +53,7 @@ int main()
     int queue[n];
     int front = -1, rear = -1;
     int ch;
-    cout << "1) Insert element to queue" << endl;
-    cout << "2) Delete element from queue" << endl;
-    cout << "3) Display all the elements of queue" << endl;
-    cout << "4) Exit" << endl;
+    cout <<"1)Insert\n2)Delete\n3)Display\n4)Exit"<<endl;
 
     do
     {
