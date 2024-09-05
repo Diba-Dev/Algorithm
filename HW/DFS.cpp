@@ -63,7 +63,7 @@ int main() {
     cin >> numNodes;
 
     if (numNodes <= 0 || numNodes > MAXN) {
-        cout << "Invalid number of nodes." << endl;
+        cout << "Invalid" << endl;
         return 1;
     }
 
@@ -80,7 +80,7 @@ int main() {
         if (a >= 0 && b >= 0 && a < numNodes && b < numNodes) {
             SetEdges(a, b);
         } else {
-            cout << "Invalid input, nodes must be within range.\n";
+            cout << "Invalid ";
         }
     }
 
@@ -97,7 +97,7 @@ int main() {
         }
         DFS(startNode, numNodes);
     } else {
-        cout << "Invalid start node." << endl;
+        cout << "Invalid" << endl;
     }
 
     return 0;
