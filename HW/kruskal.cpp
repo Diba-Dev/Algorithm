@@ -2,49 +2,50 @@
 #include <climits> // For INT_MAX
 using namespace std;
 
-const int MAXN = 20;
-const int MAXE = 100; // Assume a maximum number of edges
+const int MAXN = 20;   // Maximum number of nodes
+const int MAXE = 100;  // Maximum number of edges
+
 int parent[MAXN];
-int rankArray[MAXN]; // Renamed rank to rankArray
+int rankArray[MAXN];   // Array for union by rank
 
 struct Edge {
     int u, v, weight;
 };
 
-// Initialize disjoint set
+// Function to initialize the disjoint sets
 void InitializeSet(int numNodes) {
     for (int i = 0; i < numNodes; i++) {
         parent[i] = i;
-        rankArray[i] = 0; // Updated to rankArray
+        rankArray[i] = 0; // Initialize rank to 0
     }
 }
 
 // Find function with path compression
 int Find(int i) {
     if (parent[i] != i) {
-        parent[i] = Find(parent[i]);
+        parent[i] = Find(parent[i]);  // Path compression
     }
     return parent[i];
 }
 
-// Union function by rank
+// Union by rank function
 void Union(int u, int v) {
     int rootU = Find(u);
     int rootV = Find(v);
 
     if (rootU != rootV) {
-        if (rankArray[rootU] > rankArray[rootV]) { // Updated to rankArray
+        if (rankArray[rootU] > rankArray[rootV]) {
             parent[rootV] = rootU;
-        } else if (rankArray[rootU] < rankArray[rootV]) { // Updated to rankArray
+        } else if (rankArray[rootU] < rankArray[rootV]) {
             parent[rootU] = rootV;
         } else {
             parent[rootV] = rootU;
-            rankArray[rootU]++; // Updated to rankArray
+            rankArray[rootU]++;
         }
     }
 }
 
-// Sort edges based on weight using a simple bubble sort
+// Simple bubble sort to sort edges by weight
 void SortEdges(Edge edges[], int numEdges) {
     for (int i = 0; i < numEdges - 1; i++) {
         for (int j = 0; j < numEdges - i - 1; j++) {
@@ -57,19 +58,17 @@ void SortEdges(Edge edges[], int numEdges) {
     }
 }
 
-// Kruskal's Algorithm
+// Kruskal's algorithm to find MST
 void KruskalMST(Edge edges[], int numEdges, int numNodes) {
-    Edge result[MAXE];
-    int e = 0; // Index for result[]
-    int i = 0; // Initial index of sorted edges
+    Edge result[MAXE];  // Array to store MST result
+    int e = 0;  // Counter for number of edges in MST
+    int i = 0;  // Counter for sorted edges
 
-    // Initialize disjoint sets
-    InitializeSet(numNodes);
+    InitializeSet(numNodes);  // Initialize the disjoint sets
 
-    // Sort all edges in non-decreasing order of their weight
-    SortEdges(edges, numEdges);
+    SortEdges(edges, numEdges);  // Sort edges by weight
 
-    // Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far
+    // Iterate over sorted edges to build the MST
     while (e < numNodes - 1 && i < numEdges) {
         Edge nextEdge = edges[i++];
         int x = Find(nextEdge.u);
@@ -109,6 +108,7 @@ int main() {
         return 1;
     }
 
+    // Input the edges
     for (int i = 0; i < numEdges; i++) {
         cout << "Enter edge " << i + 1 << " (node1 node2 weight): ";
         cin >> edges[i].u >> edges[i].v >> edges[i].weight;
@@ -119,6 +119,7 @@ int main() {
         }
     }
 
+    // Call Kruskal's algorithm to compute MST
     KruskalMST(edges, numEdges, numNodes);
 
     return 0;
