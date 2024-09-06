@@ -1,56 +1,43 @@
-//TOPIC : Implementation of prims law
 #include<bits/stdc++.h>
 using namespace std;
 
 const int MAXN = 20;
-int Graph[MAXN][MAXN];
+int Graph[MAXN][MAXN], key[MAXN], parent[MAXN];
 bool inMST[MAXN];
-int key[MAXN];
-int parent[MAXN];
 int numNodes;
 
 // Initialize the graph with infinity weights (except diagonal)
 void InitializeGraph() {
     for (int i = 0; i < numNodes; i++) {
         for (int j = 0; j < numNodes; j++) {
-            if (i == j) {
-                Graph[i][j] = 0;
-            } else {
-                Graph[i][j] = INT_MAX;
-            }
+            Graph[i][j] = (i == j) ? 0 : INT_MAX;
         }
     }
 }
 
-// Set edges
-void SetEdges(int a, int b, int weight) {
-    Graph[a][b] = weight;
-    Graph[b][a] = weight;
-}
-
 // Find the vertex with the minimum key value
 int MinKey() {
-    int min = INT_MAX, minIndex;
+    int minIndex = -1, minValue = INT_MAX;
     for (int i = 0; i < numNodes; i++) {
-        if (!inMST[i] && key[i] < min) {
-            min = key[i];
+        if (!inMST[i] && key[i] < minValue) {
+            minValue = key[i];
             minIndex = i;
         }
     }
     return minIndex;
 }
 
-// Prim's Algorithm
+// Prim's Algorithm to find MST
 void PrimMST() {
-    // Initialize arrays
+    // Manually filling the key array with INT_MAX
     for (int i = 0; i < numNodes; i++) {
         key[i] = INT_MAX;
-        inMST[i] = false;
     }
-    key[0] = 0; // Start from the first node
-    parent[0] = -1; // First node is the root of MST
 
-    for (int count = 0; count < numNodes - 1; count++) {
+    key[0] = 0;
+    parent[0] = -1;
+
+    for (int i = 0; i < numNodes - 1; i++) {
         int u = MinKey();
         inMST[u] = true;
 
@@ -71,25 +58,9 @@ void DisplayMST() {
     }
 }
 
-// Function to display the adjacency matrix
-void DisplayAdjacencyMatrix() {
-    cout << "Adjacency Matrix:\n";
-    for (int i = 0; i < numNodes; i++) {
-        for (int j = 0; j < numNodes; j++) {
-            if (Graph[i][j] == INT_MAX) {
-                cout << "INF" << "\t";
-            } else {
-                cout << Graph[i][j] << "\t";
-            }
-        }
-        cout << endl;
-    }
-}
-
 int main() {
     int numEdges;
-
-    cout << "Enter number of nodes (max " << MAXN << "): ";
+    cout << "Enter number of nodes: ";
     cin >> numNodes;
 
     if (numNodes <= 0 || numNodes > MAXN) {
@@ -106,21 +77,7 @@ int main() {
         int a, b, weight;
         cout << "Enter edge " << i + 1 << " (node1 node2 weight): ";
         cin >> a >> b >> weight;
-
-        if (a >= 0 && b >= 0 && a < numNodes && b < numNodes && weight > 0) {
-            SetEdges(a, b, weight);
-        } else {
-            cout << "Invalid input.\n";
-        }
-    }
-
-    // Ask the user if they want to display the adjacency matrix
-    char displayMatrix;
-    cout << "Do you want to display the adjacency matrix? (y/n): ";
-    cin >> displayMatrix;
-
-    if (displayMatrix == 'y' || displayMatrix == 'Y') {
-        DisplayAdjacencyMatrix();
+        Graph[a][b] = Graph[b][a] = weight;
     }
 
     PrimMST();
