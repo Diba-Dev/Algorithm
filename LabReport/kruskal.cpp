@@ -1,12 +1,12 @@
-#include <iostream>
-#include <climits> // For INT_MAX
+//TOPIC : Implementation of Kruskal 
+ 
+#include<bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 20;   // Maximum number of nodes
-const int MAXE = 100;  // Maximum number of edges
-
+const int MAXN = 20;
+const int MAXE = 100;  
 int parent[MAXN];
-int rankArray[MAXN];   // Array for union by rank
+int rankArray[MAXN]; 
 
 struct Edge {
     int u, v, weight;

@@ -1,12 +1,11 @@
-#include <iostream>
-#include <limits.h>
-
+//TOPIC : Implementation of Dijkustra 
+ 
+#include<bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 100; // Adjusted maximum number of vertices
-int V; // Number of vertices
+const int MAXN = 100; 
+int V; 
 
-// Function to find the vertex with the minimum distance value
 int minDistance(int dist[], bool sptSet[]) {
     int min = INT_MAX, min_index;
 
@@ -65,7 +64,7 @@ void dijkstra(int graph[MAXN][MAXN], int src) {
 int main() {
     int graph[MAXN][MAXN];
 
-    cout << "Enter number of vertices (max " << MAXN << "): ";
+    cout << "Enter number of vertices: ";
     cin >> V;
 
     if (V <= 0 || V > MAXN) {
