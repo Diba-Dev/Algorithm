@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 struct Object {
     int objectNo;
     double profits;
@@ -64,7 +63,7 @@ int main() {
 
     cout<<"Fraction: ";
     for (int i = 0; i < size; i++) {
-        cout << X[i] << " ";
+        cout <<"Oject No: "<<Item[i].objectNo<<" = "<<X[i] << " "<<endl;
     }
     cout << endl;
 
